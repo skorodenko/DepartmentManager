@@ -27,59 +27,39 @@
 
     <div class="container-fluid border border-3">
         <div class="container-fluid pt-5 p-3">
-            <div class="row row-cols-auto">
-                <div class="col">
-                    <h4>Department:</h4>
+            <div class="row p-2">
+                <div class="col-2">
+                    <h4>Department name:</h4>
                 </div>
-                <div class="col">
-                    <div class="container border border-3">
+                <div class="col-2">
+                    <div class="container border border-2">
                         <h4>Department of IT development</h4>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container-fluid p-3">
-            <div class="row row-cols-auto">
-                <div class="col">
-                    <h4>Position:</h4>
+            <div class="row p-2">
+                <div class="col-2">
+                    <h4>Birth date:</h4>
                 </div>
-                <div class="col">
-                    <div class="container border border-3">
-                        <h4>IT specialist</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid p-3">
-            <div class="row row-cols-auto">
-                <div class="col">
-                    <h4>Employment date:</h4>
-                </div>
-                <div class="col">
-                    <div class="container border border-3">
+                <div class="col-2">
+                    <div class="container border border-2">
                         <h4>9/11/2002</h4>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="container-fluid p-3">
-            <div class="row row-cols-auto">
-                <div class="col">
-                    <h4>Dismissal date:</h4>
+            <div class="row p-2">
+                <div class="col-2">
+                    <h4>Salary:</h4>
                 </div>
-                <div class="col">
-                    <div class="container border border-3">
-                        <h4>25/11/2021</h4>
+                <div class="col-2">
+                    <div class="container border border-2">
+                        <h4>2000</h4>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
+
     <div class="container-fluid p-3">
         <div class="row justify-content-between">
             <div class="col-3 text-center">
@@ -90,13 +70,13 @@
                 </a>
             </div>
             <div class="col-3 text-center">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployee"
+                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteEmployee1"
                     class="btn text-white bg-danger bg-gradient w-75">
                     <h4>Delete</h4>
                 </button>
             </div>
             <div class="col-3 text-center">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#editEmployee"
+                <button type="button" data-bs-toggle="modal" data-bs-target="#editEmployee1"
                     class="btn text-white bg-success bg-gradient w-75">
                     <h4>Edit</h4>
                 </button>
@@ -104,8 +84,7 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editEmployee1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,60 +116,46 @@
                         </div>
                     </div>
                     <div class="container-fluid p-3">
-                        <div class="row">
+                        <div class="row justify-content-between">
                             <div class="col me-auto">
-                                <h4>Position:</h4>
+                                <h4>Birth date:</h4>
                             </div>
                             <div class="col  ms-auto text-center">
-                                <select class="form-select">
-                                    <option selected>select position</option>
-                                    <option value="1">IT specialist</option>
-                                </select>
+                                <input class="form-control" placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid p-3">
                         <div class="row justify-content-between">
                             <div class="col me-auto">
-                                <h4>Employment date:</h4>
-                            </div>
-                            <div class="col  ms-auto text-center">
-                                []
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid p-3">
-                        <div class="row justify-content-between">
-                            <div class="col me-auto">
-                                <h4>Dismissal date:</h4>
+                                <h4>Salary:</h4>
                             </div>
                             <div class="col ms-auto text-center">
-                                []
+                                <input class="form-control" placeholder="salary">
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <div class="row justify-content-end">
-                    <div class="col text-center">
-                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
-                            <h4>Cancel</h4>
-                        </button>
-                    </div>
-                    <div class="col text-center">
-                        <button type="button" class="btn text-white bg-success bg-gradient">
-                            <h4>Save</h4>
-                        </button>
+                <div class="modal-footer">
+                    <div class="row justify-content-end">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                                <h4>Cancel</h4>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="btn text-white bg-success bg-gradient">
+                                <h4>Save</h4>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
 
-    <div class="modal fade" id="deleteEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteEmployee1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -225,4 +190,5 @@
             </div>
         </div>
     </div>
+
 </body>
