@@ -32,10 +32,7 @@
                 <form class="d-flex ms-4 flex-fill">
                     <input role="search" class="form-control me-2 rounded-pill border" placeholder="Search department">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#addDepartment"
-                        class="btn btn-sm text-white bg-success bg-gradient ms-3">Add</button>
-                    <button type="button" class="btn btn-sm nav-link ms-3">
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </button>
+                        class="btn btn-sm text-white bg-success bg-gradient w-25 ms-3 me-3">Add</button>
                 </form>
             </div>
         </div>
@@ -43,13 +40,6 @@
 
 
     <div class="container-fluid">
-        <div class="container-fluid min-vw-40">
-            <div class="row">
-                <div class="col">
-                    Date from [] date to []
-                </div>
-            </div>
-        </div>
         <div class="container-fluid table-responsive">
             <style>
                 .table-responsive {
@@ -61,16 +51,12 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">Department name</th>
-                        <th scope="col">Creation date</th>
-                        <th scope="col">Removal date</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
                         <td>Department of IT development</td>
-                        <td>9/11/2002</td>
-                        <td></td>
                         <td>
                             <a href="department.html">
                                 <button type="button" class="btn modal-interface">
@@ -82,8 +68,6 @@
                     <tr>
                         <th scope="row">2</th>
                         <td>Department of infrastructure development</td>
-                        <td>9/11/2002</td>
-                        <td>25/11/2021</td>
                         <td>
                             <a href="department.html">
                                 <button type="button" class="btn modal-interface"">
@@ -95,8 +79,6 @@
                     <tr>
                         <th scope="row">3</th>
                         <td>Department of QA</td>
-                        <td>9/11/2002</td>
-                        <td>25/11/2021</td>
                         <td>
                             <a href="department.html">
                                 <button type="button" class="btn modal-interface">
@@ -112,7 +94,7 @@
 
 
     <div class="modal fade" id="addDepartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="exampleModalLabel">Add department</h4>
@@ -125,26 +107,6 @@
                             </div>
                             <div class="col  ms-auto text-center">
                                 <input type="departmentName" class="form-control" placeholder="department name">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid p-3">
-                        <div class="row justify-content-between">
-                            <div class="col me-auto">
-                                <h4>Creation date:</h4>
-                            </div>
-                            <div class="col  ms-auto text-center">
-                                []
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid p-3">
-                        <div class="row justify-content-between">
-                            <div class="col me-auto">
-                                <h4>Removal date:</h4>
-                            </div>
-                            <div class="col ms-auto text-center">
-                                []
                             </div>
                         </div>
                     </div>

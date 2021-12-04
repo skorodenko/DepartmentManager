@@ -32,10 +32,7 @@
                 <form class="d-flex ms-4 flex-fill">
                     <input role="search" class="form-control me-2 rounded-pill border" placeholder="Search employee">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#addEmployee"
-                        class="btn btn-sm text-white bg-success bg-gradient ms-3">Add</button>
-                    <button type="button" class="btn btn-sm nav-link ms-3">
-                        <i class="bi bi-arrow-clockwise"></i>
-                    </button>
+                        class="btn btn-sm text-white bg-success bg-gradient w-25 ms-3 me-3">Add</button>
                 </form>
             </div>
         </div>
@@ -43,13 +40,6 @@
 
 
     <div class="container-fluid">
-        <div class="container-fluid min-vw-40">
-            <div class="row">
-                <div class="col">
-                    Date from [] date to []
-                </div>
-            </div>
-        </div>
         <div class="container-fluid table-responsive">
             <style>
                 .table-responsive {
@@ -62,10 +52,8 @@
                         <th scope="col">id</th>
                         <th scope="col">Department name</th>
                         <th scope="col">Full name</th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Employment date</th>
-                        <th scope="col">Dismissal date</th>
-                        <th scope="col"></th>
+                        <th scope="col">Date of birth</th>
+                        <th scope="col">Salary</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,9 +61,8 @@
                         <th scope="row">1</th>
                         <td>Department of IT development</td>
                         <td>FullName</td>
-                        <td>IT specialist</td>
                         <td>9/11/2002</td>
-                        <td></td>
+                        <td>2000</td>
                         <td>
                             <a href="static_employee_from_employees.html">
                                 <button type="button" class="btn modal-interface"">
@@ -88,9 +75,8 @@
                         <th scope="row">2</th>
                         <td>Department of IT development</td>
                         <td>FullName</td>
-                        <td>IT specialist</td>
                         <td>9/11/2002</td>
-                        <td>25/11/2021</td>
+                        <td>2000</td>
                         <td>
                             <a href="static_employee_from_employees.html">
                                 <button type="button" class="btn modal-interface"">
@@ -103,9 +89,8 @@
                         <th scope="row">3</th>
                         <td>Department of IT development</td>
                         <td>FullName</td>
-                        <td>IT specialist</td>
                         <td>9/11/2002</td>
-                        <td>25/11/2021</td>
+                        <td>2000</td>
                         <td>
                             <a href="static_employee_from_employees.html">
                                 <button type="button" class="btn modal-interface"">
@@ -121,7 +106,7 @@
 
 
     <div class="modal fade" id="addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add employee</h5>
@@ -152,35 +137,22 @@
                         </div>
                     </div>
                     <div class="container-fluid p-3">
-                        <div class="row">
+                        <div class="row justify-content-between">
                             <div class="col me-auto">
-                                <h4>Position:</h4>
+                                <h4>Birth date:</h4>
                             </div>
                             <div class="col  ms-auto text-center">
-                                <select class="form-select">
-                                    <option selected>select position</option>
-                                    <option value="1">IT specialist</option>
-                                </select>
+                                <input class="form-control" placeholder="dd/mm/yyyy">
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid p-3">
                         <div class="row justify-content-between">
                             <div class="col me-auto">
-                                <h4>Employment date:</h4>
-                            </div>
-                            <div class="col  ms-auto text-center">
-                                []
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid p-3">
-                        <div class="row justify-content-between">
-                            <div class="col me-auto">
-                                <h4>Dismissal date:</h4>
+                                <h4>Salary:</h4>
                             </div>
                             <div class="col ms-auto text-center">
-                                []
+                                <input class="form-control" placeholder="salary">
                             </div>
                         </div>
                     </div>
