@@ -1,0 +1,33 @@
+{% extends "list_view/inherited/list_structure.html" %}
+
+{% block body %}
+{{ super() }}
+<div class="modal fade" id="{{ add_id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">{{ add_title }}</h4>
+            </div>
+            <div class="modal-body">
+                {% block modal_body %}
+                {% endblock %}
+                <div class="modal-footer">
+                    <div class="row justify-content-end">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                                <h4>Cancel</h4>
+                            </button>
+                        </div>
+                        <div class="col text-center">
+                            <button type="button" class="btn text-white bg-success bg-gradient">
+                                <h4>Save</h4>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
