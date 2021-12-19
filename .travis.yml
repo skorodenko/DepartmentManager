@@ -7,4 +7,3 @@ install:
 
 script:
   - pylint department_app
-  - coverage run -m unittest discover department_app/tests
