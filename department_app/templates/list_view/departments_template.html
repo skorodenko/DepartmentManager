@@ -1,0 +1,24 @@
+{% extends "list_view/inherited/modals.html" %}
+
+
+{# Page config #}
+{% set title="Departments" %}
+{% set search_placeholder="Search department" %}
+{% set active="departments" %}
+
+
+{# Modal config #}
+{% set add_id = "add_department" %}
+{% set add_title = "Add department" %}
+{% block modal_body %}
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col me-auto">
+            <h4>Department name:</h4>
+        </div>
+        <div class="col  ms-auto text-center">
+            <input type="departmentName" class="form-control" placeholder="department name">
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid border-bottom">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav nav-tabs me-auto mb-2">
+                <li class="nav-item">
+                    <a class="nav-link {% if active == 'departments' %} active {% endif %}">Departments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if active == 'employees' %} active {% endif %}">All employees</a>
+                </li>
+            </ul>
+            <form class="d-flex ms-4 flex-fill">
+                <input role="search" class="form-control me-2 rounded-pill border" placeholder="{{ search_placeholder }}">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#{{ add_id }}"
+                    class="btn btn-sm text-white bg-success bg-gradient w-25 ms-3 me-3">Add</button>
+            </form>
+        </div>
+    </div>
+</nav>
+{% endblock %}

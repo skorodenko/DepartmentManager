@@ -1,0 +1,27 @@
+{% extends "list_view/inherited/nav_bar.html" %}
+
+
+{% block body %}
+{{ super() }}
+<div class="container-fluid">
+    <div class="container-fluid table-responsive">
+        <style>
+            .table-responsive {
+                max-height: 85vh;
+            }
+        </style>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    {% block table_head %}
+                    {% endblock %}
+                </tr>
+            </thead>
+            <tbody>
+                {% block table_data %}
+                {% endblock %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
