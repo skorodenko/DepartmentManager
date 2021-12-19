@@ -8,6 +8,7 @@ app.config.from_mapping(
     DEBUG=True,
     SECRET_KEY="dev",
     SQLALCHEMY_DATABASE_URI="mysql+mysqlconnector://rinkuro:1111@localhost/test",
+    SQLALCHEMY_TRACK_MODIFICATIONS=True,
 )
 
 
