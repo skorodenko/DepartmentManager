@@ -1,0 +1,4 @@
+include department_app/schema.sql
+graft department_app/static
+graft departmnet_app/templates
+global-exclude *.pyc
