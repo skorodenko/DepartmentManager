@@ -6,6 +6,8 @@ from department_app import db
 
 class Employee(db.Model):
 
+    # pylint: disable=too-few-public-methods
+
     id = db.Column(db.Integer, primary_key=True)
 
     uuid = db.Column(db.String(36), unique=True)

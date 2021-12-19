@@ -6,4 +6,4 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pylint department_app
+  - pylint --disable=C0114,C0116,C0115,W0611 department_app
