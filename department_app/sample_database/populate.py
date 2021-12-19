@@ -1,12 +1,11 @@
+from datetime import date
+
+from department_app import db
+from department_app.models.department import Department
+from department_app.models.employee import Employee
 
 
 def populate_database():
-
-    from datetime import date
-
-    from department_app import db
-    from department_app.models.department import Department
-    from department_app.models.employee import Employee
 
     department_1 = Department("Department of IT development")
     department_2 = Department("Quality assurence")
