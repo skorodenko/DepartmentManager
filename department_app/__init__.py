@@ -1,7 +1,11 @@
 
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
+
+MIGRATIONS_DIRECTORY = os.path.join("department_app", "migrations")
 
 app = Flask(__name__)
 app.config.from_mapping(
@@ -13,3 +17,4 @@ app.config.from_mapping(
 
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
