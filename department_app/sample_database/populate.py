@@ -7,6 +7,8 @@ from department_app.models.employee import Employee
 
 def populate_database():
 
+    db.create_all()
+
     department_1 = Department("Department of IT development")
     department_2 = Department("Quality assurence")
     department_3 = Department("Research and development")

@@ -1,5 +1,5 @@
 
-import uuid
+import uuid as  UUID
 from department_app import db
 
 
@@ -13,9 +13,17 @@ class Department(db.Model):
 
     name = db.Column(db.String(64), nullable=False, unique=True)
 
-    employees = db.relationship("Employee", backref="department", lazy=True)
+    employees = db.relationship("Employee", backref="department", cascade="all,delete-orphan")
 
-    def __init__(self, name, employees=None):
+    def __init__(self, name, employees=None, id=None, uuid=None):
+        if id is not None:
+            self.id = id
+
+        if uuid is not None:
+            self.uuid = uuid
+        else:
+            self.uuid = str(UUID.uuid4())    
+        
         self.name = name
 
         if employees is None:
@@ -23,7 +31,6 @@ class Department(db.Model):
         else:
             self.employees = employees
 
-        self.uuid = str(uuid.uuid4())
 
     def __repr__(self):
-        return f"{self.name=}"
+        return f"<Department: {self.name}>"

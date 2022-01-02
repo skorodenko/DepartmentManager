@@ -1,6 +1,6 @@
 
 
-import uuid
+import uuid as UUID
 from department_app import db
 
 
@@ -12,8 +12,8 @@ class Employee(db.Model):
 
     uuid = db.Column(db.String(36), unique=True)
 
-    department_id = db.Column(db.Integer, db.ForeignKey("department.id"),
-                              nullable=False)
+    department_uuid = db.Column(db.String(36), db.ForeignKey("department.uuid"),
+                                nullable=False)
 
     name = db.Column(db.String(64), nullable=False, unique=True)
 
@@ -21,14 +21,20 @@ class Employee(db.Model):
 
     salary = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, name, date_of_birth, salary=0):
+    def __init__(self, name, date_of_birth, salary=0, id=None, uuid=None):
+        if id is not None:
+            self.id = id
+
+        if uuid is not None:
+            self.uuid = uuid
+        else:
+            self.uuid = str(UUID.uuid4())
+
         self.name = name
 
         self.date_of_birth = date_of_birth
 
         self.salary = salary
 
-        self.uuid = str(uuid.uuid4())
-
     def __repr__(self):
-        return f"{self.name=}, {self.date_of_birth=}, {self.salary=}"
+        return f"<Employee: {self.name}, {self.date_of_birth}, {self.salary}>"
