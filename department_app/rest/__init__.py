@@ -1,10 +1,8 @@
-from department_app import api
 
-from . import department
-from . import employee
+def init_rest(api):
+    from department_app.rest import department
+    from department_app.rest import employee
 
-
-def init_rest():
     api.add_resource(department.ListDepartmentApi, "/rest/departments")
 
     api.add_resource(department.AtomicDepartmentApi, "/rest/department/<uuid>")

@@ -25,13 +25,12 @@ def create_app(test_config=None):
     return app
 
 
-class TEST_CONFIG:
-    TESTING=True,
-    ENV="development",
-    SQLALCHEMY_DATABASE_URI="mysql+mysqlconnector://test:1111@localhost/test",
-    SQLALCHEMY_TRACK_MODIFICATIONS=True,
+class DEV_CONFIG:
+    ENV="development"
+    SQLALCHEMY_DATABASE_URI="mysql+mysqlconnector://test:1111@localhost/test"
+    SQLALCHEMY_TRACK_MODIFICATIONS=True
 
-app = create_app(TEST_CONFIG)
+app = create_app(DEV_CONFIG)
 
 api = Api(app)
 
@@ -39,4 +38,4 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
 
 from .rest import init_rest
-init_rest()
+init_rest(api)
