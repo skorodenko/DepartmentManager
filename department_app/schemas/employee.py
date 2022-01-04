@@ -17,7 +17,3 @@ class EmployeeSchema(SQLAlchemyAutoSchema):
         required = "name", "date_of_birth", "salary", "department_uuid"
 
         exclude = "id",
-
-    @validates_schema
-    def validate_employee(self):
-        ...

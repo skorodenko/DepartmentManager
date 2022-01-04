@@ -37,13 +37,13 @@ class AtomicEmployeeApi(Resource, BaseEmployeeApi):
 
     def put(self, uuid):
         try:
-            department = self.service.update_employee(
+            employee = self.service.update_employee(
                 self.schema, uuid, request.json)
         except ValidationError as e:
             return e.messages, 400
         except KeyError as e:
             return str(e), 404
-        return self.schema.dump(department), 201
+        return self.schema.dump(employee), 201
 
     def delete(self, uuid):
         try:

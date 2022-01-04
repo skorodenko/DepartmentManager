@@ -38,7 +38,6 @@ class DepartmentService:
 
         department = db_schema.load(
             department_json, instance=department, session=db.session)
-        db.session.add(department)
         db.session.commit()
         return department
 

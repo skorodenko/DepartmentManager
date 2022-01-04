@@ -15,7 +15,7 @@ class Employee(db.Model):
     department_uuid = db.Column(db.String(36), db.ForeignKey("department.uuid"),
                                 nullable=False)
 
-    name = db.Column(db.String(64), nullable=False, unique=True)
+    name = db.Column(db.String(64), nullable=False)
 
     date_of_birth = db.Column(db.DateTime, nullable=False)
 

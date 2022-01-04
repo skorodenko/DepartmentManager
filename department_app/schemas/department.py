@@ -21,9 +21,7 @@ class DepartmentSchema(SQLAlchemyAutoSchema):
 
         exclude = "id",
 
+        #load_only = "employees",
+
     employees = Nested(EmployeeSchema, many=True, exclude=("department_uuid",))
     
-    
-    @validates_schema
-    def validate_deparrtment(self):
-        ...

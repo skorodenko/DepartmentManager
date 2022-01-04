@@ -46,13 +46,6 @@ class AtomicDepartmentApi(Resource, BaseDepartmentApi):
             return str(e), 404
         return self.schema.dump(department), 201
 
-    def post(self):
-        try:
-            employee = self.employee_service.add_employee(self.schema, request.json)
-        except ValidationError as e:
-            return e.messages, 400
-        return self.schema.dump(employee), 200
-
     def delete(self, uuid):
         try:
             return self.service.delete_department(uuid), 204
