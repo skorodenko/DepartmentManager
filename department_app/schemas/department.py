@@ -1,27 +1,27 @@
-from marshmallow.decorators import validates_schema
 from marshmallow_sqlalchemy.fields import Nested
+from marshmallow import EXCLUDE
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 
-from department_app.models.department import Department
-from .employee import EmployeeSchema
-
-
-class DepartmentSchema(SQLAlchemyAutoSchema):
-
-    class Meta:
-
-        model = Department
-
-        load_instance = True
-
-        include_relationships = True
-
-        required = "name"
-
-        exclude = "id",
-
-        #load_only = "employees",
-
-    employees = Nested(EmployeeSchema, many=True, exclude=("department_uuid",))
+def init_department_schema(department_model, employee_schema):
+    class DepartmentSchema(SQLAlchemyAutoSchema):
     
+        class Meta:
+    
+            model = department_model
+    
+            load_instance = True
+    
+            include_relationships = True
+    
+            required = "name"
+    
+            exclude = "id",
+    
+            dump_only = "employees",
+
+            unknown = EXCLUDE
+    
+        employees = Nested(employee_schema, many=True, exclude=("department_uuid",))
+
+    return DepartmentSchema  

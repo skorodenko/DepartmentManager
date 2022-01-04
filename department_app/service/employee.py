@@ -1,7 +1,7 @@
 
 
 from department_app import db
-from department_app.models.employee import Employee
+from department_app import Employee
 
 
 class EmployeeService:

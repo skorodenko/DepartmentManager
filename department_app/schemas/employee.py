@@ -1,19 +1,20 @@
-from marshmallow.decorators import validates_schema
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
-from department_app.models.employee import Employee
+def init_employee_schema(employee_model):
+    class EmployeeSchema(SQLAlchemyAutoSchema):
+    
+        class Meta:
+    
+            model = employee_model
+    
+            load_instance = True
+    
+            include_fk = True
 
+            include_relatiships = True
 
-class EmployeeSchema(SQLAlchemyAutoSchema):
-
-    class Meta:
-
-        model = Employee
-
-        load_instance = True
-
-        include_fk = True
-
-        required = "name", "date_of_birth", "salary", "department_uuid"
-
-        exclude = "id",
+            required = "name", "date_of_birth", "salary", "department_uuid"
+    
+            exclude = "id",
+    
+    return EmployeeSchema

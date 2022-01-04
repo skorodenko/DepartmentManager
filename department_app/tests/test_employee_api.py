@@ -2,14 +2,11 @@
 from http import HTTPStatus
 
 
-def test_get_employees(app_client, employee_schema, rest_api, data_1):
-    expected_response = [employee_schema.dump(
-        employee) for employee in data_1["employees"]]
+def test_get_employees(app_client, db_setup, db_schemas, rest_api, data_1):
+    expected_response = db_schemas.Employee(many=True).dump(data_1["employees"])
 
     response = app_client.get("/rest/employees")
-
     assert response.status_code == HTTPStatus.OK
-    print(len(expected_response), "||||||||||", len(response.json))
     assert expected_response == response.json
 
 

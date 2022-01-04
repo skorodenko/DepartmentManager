@@ -3,7 +3,7 @@ from flask_restful import Resource
 from marshmallow import ValidationError
 
 
-from department_app.schemas.employee import EmployeeSchema
+from department_app import EmployeeSchema
 from department_app.service.employee import EmployeeService
 
 

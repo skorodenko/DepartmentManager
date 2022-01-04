@@ -2,7 +2,7 @@ from flask import request
 from flask_restful import Resource
 from marshmallow import ValidationError
 
-from department_app.schemas.department import DepartmentSchema
+from department_app import DepartmentSchema
 from department_app.service.department import DepartmentService
 from department_app.service.employee import EmployeeService
 
