@@ -1,4 +1,5 @@
 
+from datetime import datetime
 from http import HTTPStatus
 
 
@@ -35,37 +36,39 @@ def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_
 
     response_1 = app_client.post("/rest/employees", data=db_schemas.Employee().dumps(expected_result),
                                  content_type="application/json")
-    
+
     response_2 = app_client.get("/rest/employee/" + expected_result.uuid)
     
     assert response_1.status_code == HTTPStatus.CREATED
     assert db_schemas.Employee().dump(expected_result) == response_2.json
 
-"""
-def test_post_department_failure(app_client, db_setup, db_schemas, rest_api, data_1):
-    expected_result = db_setup.Department("Department of IT development")
+
+def test_post_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1):
+    from datetime import datetime
+    expected_result = db_setup.Employee("New Employee", datetime(2000,3,4), 0)
 
     response = app_client.post(
-        "/rest/departments", data=db_schemas.Department().dump(expected_result))
+        "/rest/employees", data=db_schemas.Employee().dump(expected_result))
 
     assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 def test_put_department_success(app_client, db_setup, db_schemas, rest_api, data_1):
     expected_result = "Changed name"
-    dep = data_1["departments"][1]
-    dep.name = expected_result
+    empl = data_1["employees"][0]
+    empl.name = expected_result
 
-    response = app_client.put("/rest/department/"+dep.uuid,
-                              data=db_schemas.Department().dumps(dep), content_type="application/json")
+    response = app_client.put("/rest/employee/"+empl.uuid,
+                              data=db_schemas.Employee().dumps(empl), content_type="application/json")
 
+    print(response.json)
     assert response.status_code == HTTPStatus.CREATED
 
-    response = app_client.get("/rest/department/"+dep.uuid)
+    response = app_client.get("/rest/employee/"+empl.uuid)
 
-    assert db_schemas.Department().dump(dep) == response.json
+    assert db_schemas.Employee().dump(empl) == response.json
 
-
+"""
 def test_put_department_failure(app_client, db_setup, db_schemas, rest_api, data_1):
     expected_result = "Changed name"
     dep = data_1["departments"][1]

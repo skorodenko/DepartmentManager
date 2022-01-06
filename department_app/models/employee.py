@@ -12,7 +12,9 @@ def init_employee_model(db):
     
         uuid = db.Column(db.String(36), unique=True, nullable=False)
     
-        department_uuid = db.Column(db.String(36), db.ForeignKey("department.uuid"))
+        department_id = db.Column(db.Integer, db.ForeignKey("department.id"))
+
+        department_uuid = db.Column(db.String(36), unique=True)
     
         name = db.Column(db.String(64), nullable=False)
     
@@ -20,7 +22,7 @@ def init_employee_model(db):
     
         salary = db.Column(db.Integer, nullable=False)
     
-        def __init__(self, name=None, date_of_birth=None, salary=0, uuid=None):
+        def __init__(self, name=None, date_of_birth=None, salary=0, uuid=None, department_uuid=None):
     
             self.name = name
     
@@ -32,7 +34,9 @@ def init_employee_model(db):
                 self.uuid = str(UUID.uuid4())
             else:
                 self.uuid = uuid
-    
+            
+            self.department_uuid = department_uuid
+
         def __repr__(self):
             return f"<Employee: {self.name}, {self.date_of_birth}, {self.salary}>"
     

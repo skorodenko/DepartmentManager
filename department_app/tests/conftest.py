@@ -5,7 +5,7 @@ from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def app():
     from department_app import create_app
 
@@ -19,7 +19,7 @@ def app():
     return create_app(TestConfig)
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def db_setup(app):
     database = SQLAlchemy(app)
 
@@ -41,7 +41,7 @@ def db_setup(app):
     return Setup
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def data_1(db_setup):
     from datetime import datetime
 
@@ -75,10 +75,10 @@ def data_1(db_setup):
     return data
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def db_schemas(db_setup):
     from department_app.schemas import init_schemas
-    DS, ES = init_schemas(db_setup.Department, db_setup.Employee)
+    DS, ES = init_schemas(db_setup.Department, db_setup.Employee, db_setup.DepartmentService)
 
     class Schemas:
         Department = DS
@@ -87,7 +87,7 @@ def db_schemas(db_setup):
     return Schemas
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def rest_api(app, db_schemas, db_setup):
     api = Api(app)
 
@@ -98,6 +98,6 @@ def rest_api(app, db_schemas, db_setup):
     return api
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def app_client(app):
     return app.test_client()

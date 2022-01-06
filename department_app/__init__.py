@@ -4,7 +4,7 @@ import secrets
 from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, init
+from flask_migrate import Migrate
 
 
 MIGRATIONS_DIRECTORY = os.path.join("department_app", "migrations")
@@ -43,7 +43,7 @@ from .service import init_services
 DepartmentService, EmployeeService = init_services(db, Department, Employee)
 
 from .schemas import init_schemas
-DepartmentSchema, EmployeeSchema = init_schemas(Department, Employee)
+DepartmentSchema, EmployeeSchema = init_schemas(Department, Employee, DepartmentService)
 
 migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
 
