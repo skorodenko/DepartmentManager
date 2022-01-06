@@ -38,10 +38,14 @@ db = SQLAlchemy(app)
 
 from .models import init_models
 Department, Employee = init_models(db)
+
+from .service import init_services
+DepartmentService, EmployeeService = init_services(db, Department, Employee)
+
 from .schemas import init_schemas
 DepartmentSchema, EmployeeSchema = init_schemas(Department, Employee)
 
 migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
 
 from .rest import init_rest
-init_rest(api)
+init_rest(api, DepartmentService, EmployeeService, DepartmentSchema, EmployeeSchema)

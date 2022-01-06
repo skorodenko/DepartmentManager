@@ -3,8 +3,7 @@ from http import HTTPStatus
 
 
 def test_get_departments(app_client, db_setup, db_schemas, rest_api, data_1):
-    expected_response = [db_schemas.Department().dump(dep)
-                         for dep in data_1["departments"]]
+    expected_response = db_schemas.Department(many=True).dump(data_1["departments"])
 
     response = app_client.get("/rest/departments")
 
@@ -36,7 +35,6 @@ def test_post_department_success(app_client, db_setup, db_schemas, rest_api, dat
 
     response_2 = app_client.get("/rest/department/" + expected_result.uuid)
 
-    print(response_1.json)
     assert response_1.status_code == HTTPStatus.CREATED
     assert db_schemas.Department().dump(expected_result) == response_2.json
 

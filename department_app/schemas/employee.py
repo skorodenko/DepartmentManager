@@ -11,7 +11,7 @@ def init_employee_schema(employee_model):
     
             include_fk = True
 
-            include_relatiships = True
+            #include_relatiships = True
 
             required = "name", "date_of_birth", "salary", "department_uuid"
     

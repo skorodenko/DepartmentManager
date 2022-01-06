@@ -22,6 +22,6 @@ def init_department_schema(department_model, employee_schema):
 
             unknown = EXCLUDE
     
-        employees = Nested(employee_schema, many=True, exclude=("department_uuid",))
+        employees = Nested(employee_schema, many=True)
 
     return DepartmentSchema  

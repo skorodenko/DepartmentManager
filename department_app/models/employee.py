@@ -10,10 +10,9 @@ def init_employee_model(db):
     
         id = db.Column(db.Integer, primary_key=True)
     
-        uuid = db.Column(db.String(36), unique=True)
+        uuid = db.Column(db.String(36), unique=True, nullable=False)
     
-        department_uuid = db.Column(db.String(36), db.ForeignKey("department.uuid"),
-                                    nullable=False)
+        department_uuid = db.Column(db.String(36), db.ForeignKey("department.uuid"))
     
         name = db.Column(db.String(64), nullable=False)
     
@@ -21,20 +20,18 @@ def init_employee_model(db):
     
         salary = db.Column(db.Integer, nullable=False)
     
-        def __init__(self, name, date_of_birth, salary=0, id=None, uuid=None):
-            if id is not None:
-                self.id = id
-    
-            if uuid is not None:
-                self.uuid = uuid
-            else:
-                self.uuid = str(UUID.uuid4())
+        def __init__(self, name=None, date_of_birth=None, salary=0, uuid=None):
     
             self.name = name
     
             self.date_of_birth = date_of_birth
     
             self.salary = salary
+
+            if uuid is None:
+                self.uuid = str(UUID.uuid4())
+            else:
+                self.uuid = uuid
     
         def __repr__(self):
             return f"<Employee: {self.name}, {self.date_of_birth}, {self.salary}>"
