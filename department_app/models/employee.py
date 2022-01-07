@@ -1,34 +1,43 @@
 
-
-import uuid
-from department_app import db
+import uuid as UUID
 
 
-class Employee(db.Model):
+def init_employee_model(db):
 
-    # pylint: disable=too-few-public-methods
+    class Employee(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
+        # pylint: disable=too-few-public-methods
 
-    uuid = db.Column(db.String(36), unique=True)
+        id = db.Column(db.Integer, primary_key=True)
 
-    department_id = db.Column(db.Integer, db.ForeignKey("department.id"),
-                              nullable=False)
+        uuid = db.Column(db.String(36), unique=True, nullable=False)
 
-    name = db.Column(db.String(64), nullable=False, unique=True)
+        department_id = db.Column(db.Integer, db.ForeignKey("department.id"))
 
-    date_of_birth = db.Column(db.DateTime, nullable=False)
+        department_uuid = db.Column(db.String(36))
 
-    salary = db.Column(db.Integer, nullable=False)
+        name = db.Column(db.String(64), nullable=False)
 
-    def __init__(self, name, date_of_birth, salary=0):
-        self.name = name
+        date_of_birth = db.Column(db.DateTime, nullable=False)
 
-        self.date_of_birth = date_of_birth
+        salary = db.Column(db.Integer, nullable=False)
 
-        self.salary = salary
+        def __init__(self, name=None, date_of_birth=None, salary=0, uuid=None, department_uuid=None):
 
-        self.uuid = str(uuid.uuid4())
+            self.name = name
 
-    def __repr__(self):
-        return f"{self.name=}, {self.date_of_birth=}, {self.salary=}"
+            self.date_of_birth = date_of_birth
+
+            self.salary = salary
+
+            if uuid is None:
+                self.uuid = str(UUID.uuid4())
+            else:
+                self.uuid = uuid
+
+            self.department_uuid = department_uuid
+
+        def __repr__(self):
+            return f"<Employee: {self.name}, {self.date_of_birth}, {self.salary}>"
+
+    return Employee

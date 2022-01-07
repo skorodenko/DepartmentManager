@@ -1,29 +1,39 @@
 
-import uuid
-from department_app import db
+import uuid as UUID
 
 
-class Department(db.Model):
+def init_department_model(db):
 
-    # pylint: disable=too-few-public-methods
+    class Department(db.Model):
 
-    id = db.Column(db.Integer, primary_key=True)
+        # pylint: disable=too-few-public-methods
 
-    uuid = db.Column(db.String(36), unique=True)
+        id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(64), nullable=False, unique=True)
+        uuid = db.Column(db.String(36), unique=True, nullable=False)
 
-    employees = db.relationship("Employee", backref="department", lazy=True)
+        name = db.Column(db.String(64), nullable=False, unique=True)
 
-    def __init__(self, name, employees=None):
-        self.name = name
+        employees = db.relationship("Employee",
+                                    backref="department",
+                                    cascade="all,delete-orphan",
+                                    lazy=True)
 
-        if employees is None:
-            self.employees = []
-        else:
-            self.employees = employees
+        def __init__(self, name=None, employees=None, uuid=None):
 
-        self.uuid = str(uuid.uuid4())
+            self.name = name
 
-    def __repr__(self):
-        return f"{self.name=}"
+            if not employees:
+                self.employees = []
+            else:
+                self.employees = employees
+
+            if uuid is None:
+                self.uuid = str(UUID.uuid4())
+            else:
+                self.uuid = uuid
+
+        def __repr__(self):
+            return f"<Department: {self.name}>"
+
+    return Department
