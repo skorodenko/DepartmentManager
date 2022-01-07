@@ -12,7 +12,8 @@ def init_department_service(db, department_model):
 
         @staticmethod
         def get_deaprtment_with_id(id):
-            department = db.session.query(department_model).filter_by(id=id).first()
+            department = db.session.query(
+                department_model).filter_by(id=id).first()
             if department is None:
                 raise KeyError(f"Invalid department id: {id}")
             return department

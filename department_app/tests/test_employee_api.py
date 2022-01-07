@@ -4,7 +4,8 @@ from http import HTTPStatus
 
 
 def test_get_employees(app_client, db_setup, db_schemas, rest_api, data_1):
-    expected_response = db_schemas.Employee(many=True).dump(data_1["employees"])
+    expected_response = db_schemas.Employee(
+        many=True).dump(data_1["employees"])
 
     response = app_client.get("/rest/employees")
 
@@ -31,14 +32,15 @@ def test_get_employee_failure(app_client, rest_api):
 def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_1):
     from datetime import datetime
     expected_department = data_1["departments"][0]
-    expected_result = db_setup.Employee("New Employee", datetime(1971, 3, 4), 1000)
+    expected_result = db_setup.Employee(
+        "New Employee", datetime(1971, 3, 4), 1000)
     expected_result.department_uuid = expected_department.uuid
 
     response_1 = app_client.post("/rest/employees", data=db_schemas.Employee().dumps(expected_result),
                                  content_type="application/json")
 
     response_2 = app_client.get("/rest/employee/" + expected_result.uuid)
-    
+
     assert response_1.status_code == HTTPStatus.CREATED
     assert db_schemas.Employee().dump(expected_result) == response_2.json
 
@@ -46,7 +48,8 @@ def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_
 def test_post_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1):
     from datetime import datetime
     expected_department = data_1["departments"][0]
-    expected_result = db_setup.Employee("New Employee", datetime(2000,3,4), 0)
+    expected_result = db_setup.Employee(
+        "New Employee", datetime(2000, 3, 4), 0)
     expected_result.department_uuid = expected_department.uuid
 
     response = app_client.post(

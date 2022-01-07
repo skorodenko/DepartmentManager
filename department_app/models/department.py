@@ -14,9 +14,9 @@ def init_department_model(db):
 
         name = db.Column(db.String(64), nullable=False, unique=True)
 
-        employees = db.relationship("Employee", 
-                                    backref="department", 
-                                    cascade="all,delete-orphan", 
+        employees = db.relationship("Employee",
+                                    backref="department",
+                                    cascade="all,delete-orphan",
                                     lazy=True)
 
         def __init__(self, name=None, employees=None, uuid=None):

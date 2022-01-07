@@ -1,6 +1,5 @@
 
 
-
 def init_employee_service(db, employee_model, department_service):
     class EmployeeService:
 
@@ -27,7 +26,8 @@ def init_employee_service(db, employee_model, department_service):
         @staticmethod
         def add_employee(db_schema, employee_json):
             employee = db_schema.load(employee_json, session=db.session)
-            department = department_service.get_department_with_uuid(employee.department_uuid)
+            department = department_service.get_department_with_uuid(
+                employee.department_uuid)
             department.employees.append(employee)
             db.session.commit()
             return employee

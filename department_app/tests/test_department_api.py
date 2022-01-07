@@ -3,7 +3,8 @@ from http import HTTPStatus
 
 
 def test_get_departments(app_client, db_setup, db_schemas, rest_api, data_1):
-    expected_response = db_schemas.Department(many=True).dump(data_1["departments"])
+    expected_response = db_schemas.Department(
+        many=True).dump(data_1["departments"])
 
     response = app_client.get("/rest/departments")
 

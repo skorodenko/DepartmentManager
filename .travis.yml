@@ -6,7 +6,7 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - pylint --disable=C0114,C0116,C0115,W0611 department_app
+  - pylint --disable=C0114,C0116,C0115,W0611 department_app --fail-under=8.0
   - coverage run -m pytest department_app/tests
   - coverage report
 

@@ -24,43 +24,41 @@ def init_schemas(department_model, employee_model, department_service):
                 ) from error
 
     class EmployeeSchema(SQLAlchemyAutoSchema):
-        
+
         class Meta:
-    
+
             model = employee_model
-    
+
             load_instance = True
 
             #include_relationships = True
 
             include_fk = True
-    
+
             required = "name", "date_of_birth", "salary"
-    
+
             exclude = "id", "department_id"
 
         department_uuid = DepartmentUUID()
 
-
     class DepartmentSchema(SQLAlchemyAutoSchema):
-    
+
         class Meta:
-    
+
             model = department_model
-    
+
             load_instance = True
-    
+
             include_relationships = True
-    
+
             required = "name"
-    
+
             exclude = "id",
 
             dump_only = "employees",
 
             unknown = EXCLUDE
-    
-        employees = Nested(EmployeeSchema, many=True)   
 
+        employees = Nested(EmployeeSchema, many=True)
 
     return DepartmentSchema, EmployeeSchema

@@ -77,7 +77,8 @@ def data_1(db_setup):
 @pytest.fixture(scope="function")
 def db_schemas(db_setup):
     from department_app.schemas import init_schemas
-    DS, ES = init_schemas(db_setup.Department, db_setup.Employee, db_setup.DepartmentService)
+    DS, ES = init_schemas(db_setup.Department,
+                          db_setup.Employee, db_setup.DepartmentService)
 
     class Schemas:
         Department = DS
