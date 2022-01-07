@@ -13,6 +13,7 @@ setup(
     requires=[
         "Flask==2.0.2",
         "Flask_SQLAlchemy==2.5.1",
+        "Flask-RESTful==0.3.9",
         "Flask_Migrate==3.1.0",
         "mysql-connector-python==8.0.27",
     ]
