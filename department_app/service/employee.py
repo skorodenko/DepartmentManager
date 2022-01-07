@@ -37,7 +37,6 @@ def init_employee_service(db, employee_model, department_service):
             employee = cls.get_employee_with_uuid(uuid)
             employee = db_schema.load(
                 employee_json, instance=employee, session=db.session)
-            db.session.add(employee)
             db.session.commit()
             return employee
 

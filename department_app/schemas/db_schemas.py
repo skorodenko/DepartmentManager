@@ -9,7 +9,10 @@ def init_schemas(department_model, employee_model, department_service):
     class DepartmentUUID(Field):
 
         def _serialize(self, value, attr, obj, **kwargs):
-            return value
+            if value is not None:
+                return value
+            else:
+                return department_service.get_deaprtment_with_id(obj.department_id).uuid
 
         def _deserialize(self, value, attr, data, partial=None, **kwargs):
             try:

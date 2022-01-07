@@ -14,7 +14,7 @@ def init_employee_model(db):
     
         department_id = db.Column(db.Integer, db.ForeignKey("department.id"))
 
-        department_uuid = db.Column(db.String(36), unique=True)
+        department_uuid = db.Column(db.String(36))
     
         name = db.Column(db.String(64), nullable=False)
     

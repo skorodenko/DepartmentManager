@@ -81,7 +81,7 @@ def test_delete_department_success(app_client, rest_api, data_1):
 
     assert response.status_code == HTTPStatus.NO_CONTENT
 
-    response = app_client.get("/rest/department" + expected_deletion.uuid)
+    response = app_client.get("/rest/department/" + expected_deletion.uuid)
 
     assert response.status_code == HTTPStatus.NOT_FOUND
 

@@ -12,7 +12,6 @@ def app():
     class TestConfig:
         TESTING = True
         ENV = "development"
-        #SQLALCHEMY_DATABASE_URI="mysql+mysqlconnector://test:1111@localhost/test"
         SQLALCHEMY_DATABASE_URI = "sqlite://"
         SQLALCHEMY_TRACK_MODIFICATIONS = True
 

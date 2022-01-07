@@ -1,11 +1,21 @@
 
 
+from department_app.rest import department
+
+
 def init_department_service(db, department_model):
     class DepartmentService:
 
         @staticmethod
         def get_departments():
             return db.session.query(department_model).all()
+
+        @staticmethod
+        def get_deaprtment_with_id(id):
+            department = db.session.query(department_model).filter_by(id=id).first()
+            if department is None:
+                raise KeyError(f"Invalid department id: {id}")
+            return department
 
         @staticmethod
         def get_department_with_uuid(uuid):
