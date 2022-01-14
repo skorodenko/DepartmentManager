@@ -10,7 +10,7 @@ def init_employee_model(db):
 
         id = db.Column(db.Integer, primary_key=True)
 
-        uuid = db.Column(db.String(36), unique=True, nullable=False)
+        uuid = db.Column(db.String(36), unique=True)
 
         department_id = db.Column(db.Integer, db.ForeignKey("department.id"))
 
@@ -18,7 +18,7 @@ def init_employee_model(db):
 
         name = db.Column(db.String(64), nullable=False)
 
-        date_of_birth = db.Column(db.DateTime, nullable=False)
+        date_of_birth = db.Column(db.Date, nullable=False)
 
         salary = db.Column(db.Integer, nullable=False)
 

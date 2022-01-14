@@ -28,6 +28,7 @@ def create_app(test_config=None):
 
 class DevConfig:
     ENV = "development"
+    DEBUG = True
     SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://test:1111@localhost/test"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
 
@@ -53,3 +54,6 @@ migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
 from .rest import init_rest
 init_rest(api, DepartmentService, EmployeeService,
           DepartmentSchema, EmployeeSchema)
+
+from .views import init_views
+init_views(app)

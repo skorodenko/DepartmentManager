@@ -1,11 +1,18 @@
 {% extends "atomic_view/department_template.html" %}
 
+{% set table_id="department-employees-table" %}
+
 {% block table_head %}
-<th scope="col">id</th>
+<th scope="col">uuid</th>
 <th scope="col">Full name</th>
 <th scope="col">Date of birth</th>
 <th scope="col">Salary</th>
 {% endblock %}
 
-{% block table_data %}
+
+{% block script %}
+    <script>
+        var department_uuid = "{{ department_uuid }}";
+    </script>
+    <script src="{{ url_for('static', filename='js/department.js') }}"></script>
 {% endblock %}

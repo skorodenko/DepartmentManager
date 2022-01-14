@@ -10,7 +10,7 @@ def init_department_model(db):
 
         id = db.Column(db.Integer, primary_key=True)
 
-        uuid = db.Column(db.String(36), unique=True, nullable=False)
+        uuid = db.Column(db.String(36), unique=True)
 
         name = db.Column(db.String(64), nullable=False, unique=True)
 

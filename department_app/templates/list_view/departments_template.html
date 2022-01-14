@@ -10,6 +10,7 @@
 {# Modal config #}
 {% set add_id = "add_department" %}
 {% set add_title = "Add department" %}
+{% set add_modal_save_id = "modal-add-department" %}
 {% block modal_body %}
 <div class="container-fluid p-3">
     <div class="row">
@@ -17,7 +18,7 @@
             <h4>Department name:</h4>
         </div>
         <div class="col  ms-auto text-center">
-            <input type="departmentName" class="form-control" placeholder="department name">
+            <input class="form-control" autocomplete="off" placeholder="enter department name" id="modal-add-department-department-name">
         </div>
     </div>
 </div>

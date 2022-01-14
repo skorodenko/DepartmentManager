@@ -1,7 +1,5 @@
 
 
-from department_app.rest import department
-
 
 def init_department_service(db, department_model):
     class DepartmentService:
@@ -11,7 +9,7 @@ def init_department_service(db, department_model):
             return db.session.query(department_model).all()
 
         @staticmethod
-        def get_deaprtment_with_id(id):
+        def get_department_with_id(id):
             department = db.session.query(
                 department_model).filter_by(id=id).first()
             if department is None:
@@ -24,14 +22,6 @@ def init_department_service(db, department_model):
                 department_model).filter_by(uuid=uuid).first()
             if department is None:
                 raise KeyError(f"Invalid department uuid: {uuid}")
-            return department
-
-        @staticmethod
-        def get_department_with_name(name):
-            department = db.session.query(
-                department_model).filter_by(name=name).first()
-            if department is None:
-                raise KeyError(f"Invalid department name: {name}")
             return department
 
         @staticmethod

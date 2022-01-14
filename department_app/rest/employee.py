@@ -1,5 +1,6 @@
+import datetime
 from flask import request
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 from marshmallow import ValidationError
 
 
@@ -46,5 +47,30 @@ def init_employee_rest(api, employee_service, employee_schema):
             except KeyError as exception:
                 return str(exception), 404
 
+
+    def parse_date(date_str):
+        try:
+            return datetime.date.fromisoformat(date_str)
+        except (ValueError, TypeError):
+            return None
+
+    class EmployeeSearchApi(Resource, BaseEmployeeApi):
+        parser = reqparse.RequestParser()
+        parser.add_argument("start_date")
+        parser.add_argument("end_date")
+
+        def get(self):
+            args = self.parser.parse_args()
+            start_date = parse_date(args["start_date"])
+            end_date = parse_date(args["end_date"])
+
+            if start_date or end_date:
+                employees = self.service.get_employees_born_in_period(start_date, end_date)
+            else:
+                employees = self.service.get_employees()
+
+            return self.schema.dump(employees, many=True), 200
+
     api.add_resource(ListAllEmployeesApi, "/rest/employees")
     api.add_resource(AtomicEmployeeApi, "/rest/employee/<uuid>")
+    api.add_resource(EmployeeSearchApi, "/rest/employees/search")

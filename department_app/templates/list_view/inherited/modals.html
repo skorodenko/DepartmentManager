@@ -2,8 +2,7 @@
 
 {% block body %}
 {{ super() }}
-<div class="modal fade" id="{{ add_id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="{{ add_id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,12 +19,31 @@
                             </button>
                         </div>
                         <div class="col text-center">
-                            <button type="button" class="btn text-white bg-success bg-gradient">
+                            <button type="button" class="btn text-white bg-success bg-gradient"
+                                id="{{ add_modal_save_id }}">
                                 <h4>Save</h4>
                             </button>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alert-failure" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-6 shadow">
+            <div class="modal-body p-5">
+                <center>
+                    <div>
+                        <h2><i class="bi bi-exclamation-triangle-fill"></i></h2>
+                    </div>
+                    <div id="alert-message"></div>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Ok</button>
             </div>
         </div>
     </div>

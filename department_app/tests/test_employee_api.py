@@ -1,5 +1,4 @@
 
-from datetime import datetime
 from http import HTTPStatus
 
 
@@ -30,10 +29,10 @@ def test_get_employee_failure(app_client, rest_api):
 
 
 def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_1):
-    from datetime import datetime
+    from datetime import date
     expected_department = data_1["departments"][0]
     expected_result = db_setup.Employee(
-        "New Employee", datetime(1971, 3, 4), 1000)
+        "New Employee", date(1971, 3, 4), 1000)
     expected_result.department_uuid = expected_department.uuid
 
     response_1 = app_client.post("/rest/employees", data=db_schemas.Employee().dumps(expected_result),
@@ -46,10 +45,10 @@ def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_
 
 
 def test_post_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1):
-    from datetime import datetime
+    from datetime import date
     expected_department = data_1["departments"][0]
     expected_result = db_setup.Employee(
-        "New Employee", datetime(2000, 3, 4), 0)
+        "New Employee", date(2000, 3, 4), 0)
     expected_result.department_uuid = expected_department.uuid
 
     response = app_client.post(

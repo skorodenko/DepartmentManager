@@ -37,6 +37,10 @@ def init_employee_service(db, employee_model, department_service):
             employee = cls.get_employee_with_uuid(uuid)
             employee = db_schema.load(
                 employee_json, instance=employee, session=db.session)
+
+            employee.department_id = department_service.get_department_with_uuid(
+                employee.department_uuid).id
+
             db.session.commit()
             return employee
 
@@ -46,5 +50,18 @@ def init_employee_service(db, employee_model, department_service):
             db.session.delete(employee)
             db.session.commit()
             return None
+
+        @staticmethod
+        def get_employees_born_in_period(start_date=None, end_date=None):
+            if start_date and end_date: 
+                employees = db.session.query(employee_model).filter(
+                    employee_model.date_of_birth >= start_date).filter(employee_model.date_of_birth <= end_date).all()
+            elif start_date is not None:
+                employees = db.session.query(employee_model).filter(employee_model.date_of_birth >= start_date).all()
+            elif end_date is not None:
+                employees = db.session.query(employee_model).filter(employee_model.date_of_birth <= end_date).all()
+            else:
+                employees = []
+            return employees
 
     return EmployeeService

@@ -10,50 +10,47 @@
 {# Modal config #}
 {% set add_id = "add_employee" %}
 {% set add_title = "Add employee" %}
+{% set add_modal_save_id = "modal-add-employee" %}
 {% block modal_body %}
 <div class="container-fluid p-3">
-    <div class="container-fluid p-3">
-        <div class="row">
-            <div class="col me-auto">
-                <h4>Full name:</h4>
-            </div>
-            <div class="col  ms-auto text-center">
-                <input class="form-control" placeholder="Full name">
-            </div>
+    <div class="row">
+        <div class="col me-auto">
+            <h4>Full name:</h4>
+        </div>
+        <div class="col  ms-auto text-center">
+            <input class="form-control" autocomplete="off" placeholder="full name" id="add-employee-name">
         </div>
     </div>
-    <div class="container-fluid p-3">
-        <div class="row">
-            <div class="col me-auto">
-                <h4>Department name:</h4>
-            </div>
-            <div class="col  ms-auto text-center">
-                <select class="form-select">
-                    <option selected disabled>Select department</option>
-                    <option value="1">Department of IT development</option>
-                    <option value="2">QA</option>
-                </select>
-            </div>
+</div>
+<div class="container-fluid p-3">
+    <div class="row">
+        <div class="col me-auto">
+            <h4>Department name:</h4>
+        </div>
+        <div class="col  ms-auto text-center">
+            <select class="form-select" autocomplete="off" id="add-employee-department-select" id="add-employee-department-select">
+                <option selected disabled hidden>Select department</option>
+            </select>
         </div>
     </div>
-    <div class="container-fluid p-3">
-        <div class="row justify-content-between">
-            <div class="col me-auto">
-                <h4>Birth date:</h4>
-            </div>
-            <div class="col  ms-auto text-center">
-                <input class="form-control" placeholder="dd/mm/yyyy">
-            </div>
+</div>
+<div class="container-fluid p-3">
+    <div class="row justify-content-between">
+        <div class="col me-auto">
+            <h4>Birth date:</h4>
+        </div>
+        <div class="col  ms-auto text-center">
+            <input class="form-control" autocomplete="off" placeholder="yyyy-mm-dd" id="add-employee-date-of-birth">
         </div>
     </div>
-    <div class="container-fluid p-3">
-        <div class="row justify-content-between">
-            <div class="col me-auto">
-                <h4>Salary:</h4>
-            </div>
-            <div class="col ms-auto text-center">
-                <input class="form-control" placeholder="Salary">
-            </div>
+</div>
+<div class="container-fluid p-3">
+    <div class="row justify-content-between">
+        <div class="col me-auto">
+            <h4>Salary:</h4>
+        </div>
+        <div class="col ms-auto text-center">
+            <input class="form-control" autocomplete="off" placeholder="salary" id="add-employee-salary">
         </div>
     </div>
 </div>
