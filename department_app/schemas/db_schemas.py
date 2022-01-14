@@ -30,7 +30,6 @@ def init_schemas(department_model, employee_model, department_service):
                 raise ValidationError("Department name can't be empty")
             return data["name"]
 
-
     class EmployeeSchema(SQLAlchemyAutoSchema):
 
         class Meta:
@@ -71,10 +70,8 @@ def init_schemas(department_model, employee_model, department_service):
         def calculate_average_salary(department):
             try:
                 return sum(map(lambda employee: employee.salary,
-                            department.employees)) / len(department.employees)
+                               department.employees)) / len(department.employees)
             except ZeroDivisionError:
                 return 0
 
-
-    
     return DepartmentSchema, EmployeeSchema

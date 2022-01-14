@@ -53,13 +53,15 @@ def init_employee_service(db, employee_model, department_service):
 
         @staticmethod
         def get_employees_born_in_period(start_date=None, end_date=None):
-            if start_date and end_date: 
+            if start_date and end_date:
                 employees = db.session.query(employee_model).filter(
                     employee_model.date_of_birth >= start_date).filter(employee_model.date_of_birth <= end_date).all()
             elif start_date is not None:
-                employees = db.session.query(employee_model).filter(employee_model.date_of_birth >= start_date).all()
+                employees = db.session.query(employee_model).filter(
+                    employee_model.date_of_birth >= start_date).all()
             elif end_date is not None:
-                employees = db.session.query(employee_model).filter(employee_model.date_of_birth <= end_date).all()
+                employees = db.session.query(employee_model).filter(
+                    employee_model.date_of_birth <= end_date).all()
             else:
                 employees = []
             return employees

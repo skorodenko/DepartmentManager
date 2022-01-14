@@ -47,7 +47,6 @@ def init_employee_rest(api, employee_service, employee_schema):
             except KeyError as exception:
                 return str(exception), 404
 
-
     def parse_date(date_str):
         try:
             return datetime.date.fromisoformat(date_str)
@@ -65,7 +64,8 @@ def init_employee_rest(api, employee_service, employee_schema):
             end_date = parse_date(args["end_date"])
 
             if start_date or end_date:
-                employees = self.service.get_employees_born_in_period(start_date, end_date)
+                employees = self.service.get_employees_born_in_period(
+                    start_date, end_date)
             else:
                 employees = self.service.get_employees()
 

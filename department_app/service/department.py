@@ -1,6 +1,5 @@
 
 
-
 def init_department_service(db, department_model):
     class DepartmentService:
 
