@@ -99,5 +99,11 @@ def rest_api(app, db_schemas, db_setup):
 
 
 @pytest.fixture(scope="function")
+def views(app):
+    from department_app.views import init_views
+    init_views(app)
+
+
+@pytest.fixture(scope="function")
 def app_client(app):
     return app.test_client()
