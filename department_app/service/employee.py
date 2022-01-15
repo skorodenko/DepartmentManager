@@ -29,7 +29,7 @@ class EmployeeService:
     def add_employee(db_schema, employee_json):
         employee = db_schema.load(employee_json, session=db.session)
         department = DepartmentService.get_department_with_uuid(
-            employee.department_uuid)
+            employee.department.uuid)
         department.employees.append(employee)
         db.session.commit()
         return employee
@@ -41,7 +41,7 @@ class EmployeeService:
             employee_json, instance=employee, session=db.session)
 
         employee.department_id = DepartmentService.get_department_with_uuid(
-            employee.department_uuid).id
+            employee.department.uuid).id
 
         db.session.commit()
         return employee

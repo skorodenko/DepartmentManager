@@ -1,7 +1,6 @@
 # pylint: disable=wrong-import-position
 
 import os
-import secrets
 from flask import Flask
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy

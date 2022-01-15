@@ -22,7 +22,7 @@ $(document).ready(function () {
 
 function initAtomicEmployee(employee) {
     $("#name").append(employee.name)
-    fetch("/rest/department/"+employee.department_uuid)
+    fetch("/rest/department/"+employee.department.uuid)
         .then(response => response.json())
         .then(department => {
             $("#department-name").append(department.name)
@@ -79,9 +79,11 @@ function editEmployee() {
 
     let data = {
         name: new_name ? new_name : old_name,
-        department_uuid: new_department_uuid ? new_department_uuid : old_department_uuid,
         date_of_birth: new_date_of_birth ? new_date_of_birth : old_date_of_birth,
         salary: new_salary ? new_salary : old_salary,
+        department: {
+            uuid: new_department_uuid ? new_department_uuid : old_department_uuid,
+        },
     }
 
     fetchWithAlert(

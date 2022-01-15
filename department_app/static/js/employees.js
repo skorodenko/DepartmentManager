@@ -45,9 +45,11 @@ function initForms() {
 function addEmployee() {
     let data = {
         name: document.getElementById(ADD_EMPLOYEE_NAME).value,
-        department_uuid: document.getElementById(ADD_EMPLOYEE_DEPARTMENT_SELECT).value,
         date_of_birth: document.getElementById(ADD_EMPLOYEE_DATE_OF_BIRTH).value,
         salary: document.getElementById(ADD_EMPLOYEE_SALARY).value,
+        department: {
+            uuid: document.getElementById(ADD_EMPLOYEE_DEPARTMENT_SELECT).value,
+        },
     }
 
     fetchWithAlert(
@@ -79,24 +81,20 @@ function initEmployeesTable(employees) {
 
     for (let i = 0; i < employees.length; i++) {
         let employee = employees[i]
-        fetch("/rest/department/"+employee.department_uuid)
-            .then(response => response.json())
-            .then(department => {
-                $("#employees-table tbody").append(
-                `<tr>
-                    <th scope="row">${employee.uuid}</th>
-                    <td>${department.name}</td>
-                    <td>${employee.name}</td>
-                    <td>${employee.date_of_birth}</td>
-                    <td>${employee.salary}</td>
-                    <td>
-                        <a href="${atomic_employee_base_url+employee.uuid}">
-                            <i class="bi bi-info-circle"></i>
-                        </a>
-                    </td>
-                    </tr>`
-                );
-            });
+        
+        $("#employees-table tbody").append(
+            `<tr>
+            <th scope="row">${employee.uuid}</th>
+            <td>${employee.department.name}</td>
+            <td>${employee.name}</td>
+            <td>${employee.date_of_birth}</td>
+            <td>${employee.salary}</td>
+            <td>
+                <a href="${atomic_employee_base_url+employee.uuid}">
+                    <i class="bi bi-info-circle"></i>
+                </a>
+            </td>
+            </tr>`);
 
     }
 }

@@ -29,47 +29,39 @@ def test_get_employee_failure(app_client, data_1):
 
 
 def test_post_employee_success(app_client, db_setup, db_schemas, data_1):
-    from datetime import date
     expected_department = data_1["departments"][0]
-    expected_result = db_setup.Employee(
-        "New Employee", date(1971, 3, 4), 1000)
-    expected_result.department_uuid = expected_department.uuid
+    expexted_result = {"name": "POST employee", "date_of_birth": "1971-3-4",
+                       "salary": "1000", "department": {"uuid": expected_department.uuid,
+                                                        "name": expected_department.name}}
+    response = app_client.post("/rest/employees", json=expexted_result)
 
-    response_1 = app_client.post("/rest/employees", data=db_schemas.Employee().dumps(expected_result),
-                                 content_type="application/json")
-
-    response_2 = app_client.get("/rest/employee/" + expected_result.uuid)
-
-    assert response_1.status_code == HTTPStatus.CREATED
-    assert db_schemas.Employee().dump(expected_result) == response_2.json
+    assert response.status_code == HTTPStatus.CREATED
 
 
 def test_post_employee_failure(app_client, db_setup, db_schemas, data_1):
-    from datetime import date
-    expected_department = data_1["departments"][0]
-    expected_result = db_setup.Employee(
-        "New Employee", date(2000, 3, 4), 0)
-    expected_result.department_uuid = expected_department.uuid
+    expexted_result = {"name": "POST employee", "date_of_birth": "1971-3-4",
+                       "salary": "1000", "department": {"uuid": "random_uuid",
+                                                        "name": "random_name"}}
 
     response = app_client.post(
-        "/rest/employees", data=db_schemas.Employee().dump(expected_result))
+        "/rest/employees", json=expexted_result)
 
     assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 def test_put_employee_success(app_client, db_setup, db_schemas, data_1):
-    expected_result = "Changed name"
-    empl = data_1["employees"][0]
-    empl.name = expected_result
+	expected_result = "Changed name"
+	empl = data_1["employees"][0]
+	empl.name = expected_result
 
-    response = app_client.put("/rest/employee/"+empl.uuid,
-                              data=db_schemas.Employee().dumps(empl), content_type="application/json")
+	response = app_client.put("/rest/employee/"+empl.uuid,
+							  data=db_schemas.Employee().dumps(empl), content_type="application/json")
 
-    assert response.status_code == HTTPStatus.CREATED
+	assert response.status_code == HTTPStatus.CREATED
 
-    response = app_client.get("/rest/employee/"+empl.uuid)
+	response = app_client.get("/rest/employee/"+empl.uuid)
 
-    assert db_schemas.Employee().dump(empl) == response.json
+	assert db_schemas.Employee().dump(empl) == response.json
 
 
 def test_put_employee_failure(app_client, db_setup, db_schemas, data_1):

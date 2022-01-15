@@ -14,15 +14,13 @@ class Employee(db.Model):
 
     department_id = db.Column(db.Integer, db.ForeignKey("department.id"))
 
-    department_uuid = db.Column(db.String(36))
-
     name = db.Column(db.String(64), nullable=False)
 
     date_of_birth = db.Column(db.Date, nullable=False)
 
     salary = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, name=None, date_of_birth=None, salary=0, uuid=None, department_uuid=None):
+    def __init__(self, name=None, date_of_birth=None, salary=0, department=None):
 
         self.name = name
 
@@ -30,12 +28,9 @@ class Employee(db.Model):
 
         self.salary = salary
 
-        if uuid is None:
-            self.uuid = str(UUID.uuid4())
-        else:
-            self.uuid = uuid
+        self.uuid = str(UUID.uuid4())
 
-        self.department_uuid = department_uuid
+        self.department = department
 
     def __repr__(self):
         return f"<Employee: {self.name}, {self.date_of_birth}, {self.salary}>"

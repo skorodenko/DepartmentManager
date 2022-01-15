@@ -29,22 +29,18 @@ def test_get_department_failure(app_client, data_1):
 
 
 def test_post_department_success(app_client, db_setup, db_schemas, data_1):
-    expected_result = db_setup.Department("New Department")
+    expected_result = {"name": "POST department"}
 
-    response_1 = app_client.post("/rest/departments", data=db_schemas.Department().dumps(expected_result),
-                                 content_type="application/json")
+    response = app_client.post("/rest/departments", json=expected_result)
 
-    response_2 = app_client.get("/rest/department/" + expected_result.uuid)
-
-    assert response_1.status_code == HTTPStatus.CREATED
-    assert db_schemas.Department().dump(expected_result) == response_2.json
+    assert response.status_code == HTTPStatus.CREATED
 
 
 def test_post_department_failure(app_client, db_setup, db_schemas, data_1):
-    expected_result = db_setup.Department("Department of IT development")
+    expected_result = {"name": None}
 
     response = app_client.post(
-        "/rest/departments", data=db_schemas.Department().dump(expected_result))
+        "/rest/departments", json=expected_result)
 
     assert response.status_code == HTTPStatus.BAD_REQUEST
 

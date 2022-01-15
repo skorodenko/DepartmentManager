@@ -19,7 +19,7 @@ class Department(db.Model):
                                 cascade="all,delete-orphan",
                                 lazy=True)
 
-    def __init__(self, name=None, employees=None, uuid=None):
+    def __init__(self, name=None, employees=None):
 
         self.name = name
 
@@ -28,10 +28,7 @@ class Department(db.Model):
         else:
             self.employees = employees
 
-        if uuid is None:
-            self.uuid = str(UUID.uuid4())
-        else:
-            self.uuid = uuid
+        self.uuid = str(UUID.uuid4())
 
     def __repr__(self):
         return f"<Department: {self.name}>"
