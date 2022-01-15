@@ -2,6 +2,7 @@
 from department_app import db
 from department_app.models.department import Department
 
+
 class DepartmentService:
 
     @staticmethod

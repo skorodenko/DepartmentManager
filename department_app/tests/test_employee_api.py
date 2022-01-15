@@ -50,18 +50,18 @@ def test_post_employee_failure(app_client, db_setup, db_schemas, data_1):
 
 
 def test_put_employee_success(app_client, db_setup, db_schemas, data_1):
-	expected_result = "Changed name"
-	empl = data_1["employees"][0]
-	empl.name = expected_result
+    expected_result = "Changed name"
+    empl = data_1["employees"][0]
+    empl.name = expected_result
 
-	response = app_client.put("/rest/employee/"+empl.uuid,
-							  data=db_schemas.Employee().dumps(empl), content_type="application/json")
+    response = app_client.put("/rest/employee/"+empl.uuid,
+                              data=db_schemas.Employee().dumps(empl), content_type="application/json")
 
-	assert response.status_code == HTTPStatus.CREATED
+    assert response.status_code == HTTPStatus.CREATED
 
-	response = app_client.get("/rest/employee/"+empl.uuid)
+    response = app_client.get("/rest/employee/"+empl.uuid)
 
-	assert db_schemas.Employee().dump(empl) == response.json
+    assert db_schemas.Employee().dump(empl) == response.json
 
 
 def test_put_employee_failure(app_client, db_setup, db_schemas, data_1):

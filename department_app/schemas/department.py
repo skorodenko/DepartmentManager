@@ -7,13 +7,13 @@ from marshmallow import EXCLUDE, ValidationError
 from department_app.models.department import Department
 from .employee import EmployeeSchema
 
+
 class DepartmentName(String):
 
     def _deserialize(self, value, attr, data, **kwargs):
         if not data["name"]:
             raise ValidationError("Department name can't be empty")
         return data["name"]
-
 
 
 class DepartmentSchema(SQLAlchemyAutoSchema):
@@ -42,6 +42,6 @@ class DepartmentSchema(SQLAlchemyAutoSchema):
     def calculate_average_salary(department):
         try:
             return round(sum(map(lambda employee: employee.salary,
-                            department.employees)) / len(department.employees), 2)
+                                 department.employees)) / len(department.employees), 2)
         except ZeroDivisionError:
             return 0

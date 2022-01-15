@@ -7,10 +7,12 @@ from department_app.service.department import DepartmentService
 from department_app.service.employee import EmployeeService
 from department_app.schemas.department import DepartmentSchema
 
+
 class BaseDepartmentApi:
     service = DepartmentService
     employee_service = EmployeeService
     schema = DepartmentSchema()
+
 
 class ListDepartmentApi(Resource, BaseDepartmentApi):
 
@@ -27,6 +29,7 @@ class ListDepartmentApi(Resource, BaseDepartmentApi):
         except IntegrityError:
             return "Duplicate department name", 400
         return self.schema.dump(department), 201
+
 
 class AtomicDepartmentApi(Resource, BaseDepartmentApi):
 
@@ -54,4 +57,3 @@ class AtomicDepartmentApi(Resource, BaseDepartmentApi):
             return self.service.delete_department(uuid), 204
         except KeyError as exception:
             return str(exception), 404
-

@@ -6,9 +6,11 @@ from marshmallow import ValidationError
 from department_app.service.employee import EmployeeService
 from department_app.schemas.employee import EmployeeSchema
 
+
 class BaseEmployeeApi:
     service = EmployeeService
     schema = EmployeeSchema()
+
 
 class ListAllEmployeesApi(Resource, BaseEmployeeApi):
 
@@ -22,6 +24,7 @@ class ListAllEmployeesApi(Resource, BaseEmployeeApi):
         except ValidationError as exception:
             return exception.messages, 400
         return self.schema.dump(employee), 201
+
 
 class AtomicEmployeeApi(Resource, BaseEmployeeApi):
 
@@ -48,11 +51,13 @@ class AtomicEmployeeApi(Resource, BaseEmployeeApi):
         except KeyError as exception:
             return str(exception), 404
 
+
 def parse_date(date_str):
     try:
         return datetime.date.fromisoformat(date_str)
     except (ValueError, TypeError):
         return None
+
 
 class EmployeeSearchApi(Resource, BaseEmployeeApi):
     parser = reqparse.RequestParser()
@@ -71,4 +76,3 @@ class EmployeeSearchApi(Resource, BaseEmployeeApi):
             employees = self.service.get_employees()
 
         return self.schema.dump(employees, many=True), 200
-

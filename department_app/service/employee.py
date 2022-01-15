@@ -3,6 +3,7 @@ from department_app import db
 from department_app.models.employee import Employee
 from .department import DepartmentService
 
+
 class EmployeeService:
 
     @staticmethod
@@ -67,4 +68,3 @@ class EmployeeService:
         else:
             employees = []
         return employees
-

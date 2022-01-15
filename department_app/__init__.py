@@ -12,7 +12,7 @@ MIGRATIONS_DIRECTORY = os.path.join("department_app", "migrations")
 
 def init_app(test_config=None):
     global app, api, db, migrate
-    
+
     app = Flask(__name__)
 
     if test_config is None:
@@ -22,14 +22,14 @@ def init_app(test_config=None):
         app.config.from_object(test_config)
 
     api = Api(app)
-    
+
     db = SQLAlchemy(app)
-    
+
     migrate = Migrate(app, db, directory=MIGRATIONS_DIRECTORY)
-    
+
     from .rest import init_rest
     init_rest()
-    
+
     from .views import init_views
     init_views()
 
