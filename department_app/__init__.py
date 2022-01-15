@@ -17,7 +17,8 @@ def init_app(test_config=None):
     app = Flask(__name__)
 
     if test_config is None:
-        app.config.from_pyfile("config.py")
+        from config import Config
+        app.config.from_object(Config)
     else:
         app.config.from_object(test_config)
 
