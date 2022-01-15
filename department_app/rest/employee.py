@@ -1,3 +1,5 @@
+# pylint: disable=too-few-public-methods
+
 import datetime
 from flask import request
 from flask_restful import Resource, reqparse

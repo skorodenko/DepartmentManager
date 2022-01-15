@@ -1,4 +1,4 @@
-# pylint: disable=wrong-import-position
+# pylint: disable=wrong-import-position,invalid-name,global-variable-undefined,import-outside-toplevel
 
 import os
 from flask import Flask

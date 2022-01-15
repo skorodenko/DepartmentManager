@@ -1,3 +1,5 @@
+# pylint: disable=wrong-import-order
+
 from . import department
 from . import employee
 

@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name,redefined-builtin
 
 from department_app import db
 from department_app.models.department import Department
@@ -48,4 +49,3 @@ class DepartmentService:
 
         db.session.delete(department)
         db.session.commit()
-        return None

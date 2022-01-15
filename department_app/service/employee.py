@@ -52,7 +52,6 @@ class EmployeeService:
         employee = cls.get_employee_with_uuid(uuid)
         db.session.delete(employee)
         db.session.commit()
-        return None
 
     @staticmethod
     def get_employees_born_in_period(start_date=None, end_date=None):

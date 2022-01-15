@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods
 
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow.fields import Field, Nested

@@ -1,3 +1,4 @@
+# pylint: disable=trailing-comma-tuple,too-few-public-methods,cyclic-import
 
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow_sqlalchemy.fields import Nested
