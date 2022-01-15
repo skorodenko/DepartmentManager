@@ -1,8 +1,10 @@
 from datetime import date
 
+import app
+
 from department_app import db
-from department_app import Department
-from department_app import Employee
+from department_app.models.department import Department
+from department_app.models.employee import Employee
 
 
 def populate_database():

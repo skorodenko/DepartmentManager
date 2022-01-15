@@ -2,7 +2,7 @@
 from http import HTTPStatus
 
 
-def test_get_employees(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_get_employees(app_client, db_setup, db_schemas, data_1):
     expected_response = db_schemas.Employee(
         many=True).dump(data_1["employees"])
 
@@ -12,7 +12,7 @@ def test_get_employees(app_client, db_setup, db_schemas, rest_api, data_1):
     assert expected_response == response.json
 
 
-def test_get_employee_success(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_get_employee_success(app_client, db_setup, db_schemas, data_1):
     expected_response = data_1["employees"][0]
 
     response = app_client.get("/rest/employee/"+expected_response.uuid)
@@ -21,14 +21,14 @@ def test_get_employee_success(app_client, db_setup, db_schemas, rest_api, data_1
     assert db_schemas.Employee().dump(expected_response) == response.json
 
 
-def test_get_employee_failure(app_client, rest_api):
+def test_get_employee_failure(app_client, data_1):
 
     response = app_client.get("/rest/employee/random_stuff")
 
     assert response.status_code == HTTPStatus.NOT_FOUND
 
 
-def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_post_employee_success(app_client, db_setup, db_schemas, data_1):
     from datetime import date
     expected_department = data_1["departments"][0]
     expected_result = db_setup.Employee(
@@ -44,7 +44,7 @@ def test_post_employee_success(app_client, db_setup, db_schemas, rest_api, data_
     assert db_schemas.Employee().dump(expected_result) == response_2.json
 
 
-def test_post_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_post_employee_failure(app_client, db_setup, db_schemas, data_1):
     from datetime import date
     expected_department = data_1["departments"][0]
     expected_result = db_setup.Employee(
@@ -57,7 +57,7 @@ def test_post_employee_failure(app_client, db_setup, db_schemas, rest_api, data_
     assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
-def test_put_employee_success(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_put_employee_success(app_client, db_setup, db_schemas, data_1):
     expected_result = "Changed name"
     empl = data_1["employees"][0]
     empl.name = expected_result
@@ -72,7 +72,7 @@ def test_put_employee_success(app_client, db_setup, db_schemas, rest_api, data_1
     assert db_schemas.Employee().dump(empl) == response.json
 
 
-def test_put_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1):
+def test_put_employee_failure(app_client, db_setup, db_schemas, data_1):
     expected_result = "Changed name"
     empl = data_1["employees"][0]
     empl.name = expected_result
@@ -83,7 +83,7 @@ def test_put_employee_failure(app_client, db_setup, db_schemas, rest_api, data_1
     assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
-def test_delete_employee_success(app_client, rest_api, data_1):
+def test_delete_employee_success(app_client, data_1):
     expected_deletion = data_1["employees"][2]
 
     response = app_client.delete("/rest/employee/" + expected_deletion.uuid)
@@ -95,7 +95,7 @@ def test_delete_employee_success(app_client, rest_api, data_1):
     assert response.status_code == HTTPStatus.NOT_FOUND
 
 
-def test_delete_department_failure(app_client, rest_api, data_1):
+def test_delete_department_failure(app_client, data_1):
 
     response = app_client.delete("/rest/department/random_stuff")
 

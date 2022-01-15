@@ -1,8 +1,10 @@
 
 from flask import render_template, redirect
 
+from department_app import app
 
-def init_departments_view(app):
+
+def init_departments_view():
 
     @app.route("/")
     def root():

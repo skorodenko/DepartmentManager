@@ -4,6 +4,6 @@ from . import departments
 from . import employees
 
 
-def init_views(app):
-    departments.init_departments_view(app)
-    employees.init_employees_view(app)
+def init_views():
+    departments.init_departments_view()
+    employees.init_employees_view()
