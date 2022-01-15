@@ -69,8 +69,8 @@ def init_schemas(department_model, employee_model, department_service):
         @staticmethod
         def calculate_average_salary(department):
             try:
-                return sum(map(lambda employee: employee.salary,
-                               department.employees)) / len(department.employees)
+                return round(sum(map(lambda employee: employee.salary,
+                               department.employees)) / len(department.employees), 2)
             except ZeroDivisionError:
                 return 0
 
