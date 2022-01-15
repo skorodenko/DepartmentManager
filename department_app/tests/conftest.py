@@ -1,13 +1,9 @@
 import pytest
 
 
-from flask_restful import Api
-from flask_sqlalchemy import SQLAlchemy
-
-
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def app():
-    from department_app import create_app
+    from department_app import init_app
 
     class TestConfig:
         TESTING = True
@@ -15,19 +11,20 @@ def app():
         SQLALCHEMY_DATABASE_URI = "sqlite://"
         SQLALCHEMY_TRACK_MODIFICATIONS = True
 
-    return create_app(TestConfig)
+    return init_app(TestConfig)
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def db_setup(app):
-    database = SQLAlchemy(app)
+    from department_app import db as database
 
-    from department_app.models import init_models
-    department_model, employee_model = init_models(database)
+    from department_app.models import department, employee
+    department_model = department.Department
+    employee_model = employee.Employee
 
-    from department_app.service import init_services
-    department_service, employee_service = init_services(
-        database, department_model, employee_model)
+    from department_app.service import department, employee
+    department_service = department.DepartmentService
+    employee_service = employee.EmployeeService
 
     class Setup:
         db = database
@@ -36,7 +33,6 @@ def db_setup(app):
         DepartmentService = department_service
         EmployeeService = employee_service
 
-    Setup.db.create_all()
     return Setup
 
 
@@ -47,6 +43,9 @@ def data_1(db_setup):
     db = db_setup.db
     Department = db_setup.Department
     Employee = db_setup.Employee
+
+    db.create_all()
+    db.session.commit()
 
     department_1 = Department("Test Department 1")
     department_2 = Department("Test Department 2")
@@ -71,33 +70,25 @@ def data_1(db_setup):
     db.session.add_all(data["employees"])
     db.session.commit()
 
-    return data
+    yield data
+
+    db.drop_all()
+    db.session.commit()
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def db_schemas(db_setup):
-    from department_app.schemas import init_schemas
-    DS, ES = init_schemas(db_setup.Department,
-                          db_setup.Employee, db_setup.DepartmentService)
+    from department_app.schemas import department, employee
+    DepartmentSchema = department.DepartmentSchema
+    EmployeeSchema = employee.EmployeeSchema
 
     class Schemas:
-        Department = DS
-        Employee = ES
+        Department = DepartmentSchema
+        Employee = EmployeeSchema
 
     return Schemas
 
 
-@pytest.fixture(scope="function")
-def rest_api(app, db_schemas, db_setup):
-    api = Api(app)
-
-    from department_app.rest import init_rest
-    init_rest(api, db_setup.DepartmentService, db_setup.EmployeeService,
-              db_schemas.Department, db_schemas.Employee)
-
-    return api
-
-
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="session")
 def app_client(app):
     return app.test_client()

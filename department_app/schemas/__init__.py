@@ -1,2 +1,3 @@
 
-from .db_schemas import init_schemas
+from . import department
+from . import employee

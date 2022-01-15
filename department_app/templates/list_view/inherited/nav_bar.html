@@ -6,16 +6,25 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav nav-tabs me-auto mb-2">
                 <li class="nav-item">
-                    <a class="nav-link {% if active == 'departments' %} active {% endif %}">Departments</a>
+                    <a class="nav-link {% if active == 'departments' %} active {% endif %}"
+                        href="{% if active == 'employees' %}/departments{% endif %}">Departments</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {% if active == 'employees' %} active {% endif %}">All employees</a>
+                    <a class="nav-link {% if active == 'employees' %} active {% endif %}"
+                        href="{% if active == 'departments' %}/employees{% endif %}">All employees</a>
                 </li>
             </ul>
-            <form class="d-flex ms-4 flex-fill">
-                <input role="search" class="form-control me-2 rounded-pill border" placeholder="{{ search_placeholder }}">
+            <form class="d-flex ms-5 flex-fill">
+                {% if active == 'employees' %}
+                <div class="input-daterange input-group ms-auto me-5" id="datepicker">
+                    <input type="text" style="text-align:center" placeholder="yyyy-mm-dd" onchange="searchByDate()" autocomplete="off" class="input-sm form-control" name="start" id="datepicker-start"/>
+                    <span class="input-group-text">to</span>
+                    <input type="text" onchange="searchByDate()" placeholder="yyyy-mm-dd" autocomplete="off" style="text-align:center" class="input-sm form-control" name="end" id="datepicker-end"/>
+                    <button class="btn btn-outline-secondary" type="button" onclick="$('.input-sm').val(''); searchByDate()" id="clear-datepicker">Clear</button>
+                </div>
+                {% endif %}
                 <button type="button" data-bs-toggle="modal" data-bs-target="#{{ add_id }}"
-                    class="btn btn-sm text-white bg-success bg-gradient w-25 ms-3 me-3">Add</button>
+                    class="btn btn-sm text-white bg-success bg-gradient w-25 ms-auto me-3">Add</button>
             </form>
         </div>
     </div>
