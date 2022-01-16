@@ -1,4 +1,12 @@
 # pylint: disable=trailing-comma-tuple,too-few-public-methods,cyclic-import
+"""
+This module defines schema, used to serialize/deserialize departments
+
+Classes:
+    - DepartmentSchema => department serialization/deserialization schema
+    
+    - DepartmentName => marshmallow class to validate department name
+"""
 
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 from marshmallow_sqlalchemy.fields import Nested
@@ -10,6 +18,10 @@ from .employee import EmployeeSchema
 
 
 class DepartmentName(String):
+    """
+    Marshmallow field, used to verify department name
+    is not empty("")
+    """
 
     def _deserialize(self, value, attr, data, **kwargs):
         if not data["name"]:
@@ -18,8 +30,13 @@ class DepartmentName(String):
 
 
 class DepartmentSchema(SQLAlchemyAutoSchema):
-
+    """
+    Department serialization/deserialization schema
+    """
     class Meta:
+        """
+        Department schema metadata
+        """
 
         model = Department
 
@@ -27,10 +44,13 @@ class DepartmentSchema(SQLAlchemyAutoSchema):
 
         include_relationships = True
 
+        # exclude id (security)
         exclude = "id",
 
+        # include employees only when serializing department
         dump_only = "employees",
-
+        
+        # excludes unknown fields on deserialization
         unknown = EXCLUDE
 
     name = DepartmentName(required=True)
@@ -41,6 +61,9 @@ class DepartmentSchema(SQLAlchemyAutoSchema):
 
     @staticmethod
     def calculate_average_salary(department):
+        """
+        Calculates average salary for department
+        """
         try:
             return round(sum(map(lambda employee: employee.salary,
                                  department.employees)) / len(department.employees), 2)

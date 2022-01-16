@@ -5,7 +5,15 @@ from department_app import db
 
 
 class Employee(db.Model):
+    """
+    ORM model representing employee
 
+    Parameters:
+        - Name => employee name
+        - Date of birth => employee's date of birth (yyyy-mm-dd)
+        - Salary => employee's salary
+        - Department => employee's Department
+    """
     # pylint: disable=too-few-public-methods
 
     id = db.Column(db.Integer, primary_key=True)
