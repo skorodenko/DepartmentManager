@@ -1,4 +1,15 @@
 # pylint: disable=wrong-import-order
+"""
+This package contains modules with department and employee REST APIs
+
+Modules:
+    - "department.py" => defines department api
+
+    - "employee.py" => defines employee api
+
+Functions:
+    - "init_api" => register REST API endpoints
+"""
 
 from . import department
 from . import employee

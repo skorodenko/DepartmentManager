@@ -1,5 +1,15 @@
+"""
+This module defines function to populate database with 
+sample data.
+
+Functions:
+    - populate_database => populates production database
+        with sample data.
+"""
+
 from datetime import date
 
+# initialize app with production database URI
 import app
 
 from department_app import db
@@ -8,6 +18,9 @@ from department_app.models.employee import Employee
 
 
 def populate_database():
+    """
+    Populate production database with sample employees/departments
+    """
 
     db.create_all()
 

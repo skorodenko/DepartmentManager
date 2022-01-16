@@ -1,4 +1,10 @@
+"""
+This package contains modules defining views
 
+Modules:
+    - "department.py": defines department views
+    - "employee.py": defines employee views
+"""
 
 from . import departments
 from . import employees

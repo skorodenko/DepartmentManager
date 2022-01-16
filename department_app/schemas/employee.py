@@ -1,14 +1,26 @@
 # pylint: disable=too-few-public-methods
+"""
+This module defines schema, used to serialize/deserialize employees
+
+Classes:
+    - EmployeeSchema => department serialization/deserialization schema
+
+    - DepartmentNested => nested department for employee schema
+"""
 
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from marshmallow.fields import Field, Nested
-from marshmallow import ValidationError
+from marshmallow.fields import Nested
+from marshmallow import ValidationError, EXCLUDE
 
 from department_app.models.employee import Employee
 from department_app.service.department import DepartmentService
 
 
 class DepartmentNested(Nested):
+    """
+    Marshmallow field, used to nest employee's department
+    into employee schema
+    """
     def __init__(self):
         super().__init__(
             "DepartmentSchema", exclude=("employees", "average_salary"), required=True
@@ -25,8 +37,13 @@ class DepartmentNested(Nested):
 
 
 class EmployeeSchema(SQLAlchemyAutoSchema):
-
+    """
+    Employee serialization/deserialization schema
+    """
     class Meta:
+        """
+        Employee schema metadata
+        """
 
         model = Employee
 
@@ -34,6 +51,10 @@ class EmployeeSchema(SQLAlchemyAutoSchema):
 
         include_fk = True
 
+        # exclude ids (security)
         exclude = "id", "department_id"
+
+        # excludes unknown fields on deserialization
+        unknown = EXCLUDE
 
     department = DepartmentNested()

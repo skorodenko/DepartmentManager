@@ -1,3 +1,4 @@
+# pylint: disable=too-few-public-methods
 
 import uuid as UUID
 
@@ -5,8 +6,13 @@ from department_app import db
 
 
 class Department(db.Model):
+    """
+    ORM model representing department
 
-    # pylint: disable=too-few-public-methods
+    Parameters:
+        - Name => department name
+        - Employees => list of employees of the department
+    """
 
     id = db.Column(db.Integer, primary_key=True)
 
