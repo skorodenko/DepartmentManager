@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div class="card bg-secondary text-white text-center">
+    <div class="card-body" id="department-name">
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="container-fluid pt-5 p-3">
+        <div class="col-2 ms-auto text-center">
+            <div class="row p-2">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#editDepartment"
+                    class="btn text-white bg-success bg-gradient w-75">
+                    <h4>Edit</h4>
+                </button>
+            </div>
+            <div class="row p-2">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#deleteDepartment"
+                    class="btn text-white bg-danger bg-gradient w-75">
+                    <h4>Delete</h4>
+                </button>
+            </div>
+            <div class="row p-2">
+                <button type="button" class="btn btn-outline-dark w-75" onclick="history.back()">
+                    <h4>Back</h4>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid p-3">
+        <div class="row justify-content-center">
+            <div class="card w-25 bg-secondary text-white text-center">
+                <div class="card-body">
+                    <h3>Employees</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid table-responsive p-3">
+            <style>
+                .table-responsive {
+                    max-height: 85vh;
+                }
+            </style>
+            <table class="table table-striped", id="department-employees-table">
+                <thead>
+                    <tr>
+                        {% block table_head %}
+                        {% endblock %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% block table_data %}
+                    {% endblock %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="editDepartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit department</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid p-3">
+                    <div class="row">
+                        <div class="col me-auto">
+                            <h4>Department name:</h4>
+                        </div>
+                        <div class="col  ms-auto text-center">
+                            <input type="departmentName" class="form-control" autocomplete="off" id="modal-edit-department-department-name">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row justify-content-end">
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                            <h4>Cancel</h4>
+                        </button>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn text-white bg-success bg-gradient" id="modal-edit-department">
+                            <h4>Save</h4>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="deleteDepartment" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete department</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container p-3">
+                    <div class="row-cols-auto text-center">
+                        <div class="col">
+                            <h1><i class="bi bi-exclamation-triangle"></i></h1>
+                        </div>
+                        <div class="col">
+                            Please confirm the department removal
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="row justify-content-end">
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" id="modal-delete-department">
+                            <h4>Ok</h4>
+                        </button>
+                    </div>
+                    <div class="col me-auto">
+                        <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">
+                            <h4>Cancel</h4>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="alert-failure" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content rounded-6 shadow">
+            <div class="modal-body p-5">
+                <center>
+                <div><h2><i class="bi bi-exclamation-triangle-fill"></i></h2></div>
+                <div id="alert-message"></div>
+                </center>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-primary mt-5 w-100" data-bs-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
