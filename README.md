@@ -1,5 +1,5 @@
 # EPAM Python [OnlineUA] Autumn 2021 final project - Department App
-[![Coverage Status](https://coveralls.io/repos/github/skorodenko/DepartmentManager/badge.svg?branch=feature/CI_CD_CodeQuality)](https://coveralls.io/github/skorodenko/DepartmentManager?branch=feature/CI_CD_CodeQuality)
+[![Coverage Status](https://coveralls.io/repos/github/skorodenko/DepartmentManager/badge.svg?branch=feature/CI_CD_CodeQuality)](https://coveralls.io/github/skorodenko/DepartmentManager?branch=master)
 
 ## With this app you can:
 - ### Display a list of departments and the average salary (calculated automatically) for these departments
