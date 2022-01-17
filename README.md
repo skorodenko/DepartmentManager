@@ -69,7 +69,7 @@ localhost:5000/rest/employees/search/start_date=<YYYY-MM-DD>&end_date=<YYYY-MM-D
 - ### Web Application:
 ```
 localhost:5000/departments
-localhost:5000/departments/<uuid>
+localhost:5000/department/<uuid>
 
 localhost:5000/employees
 localhost:5000/employee/<uuid>
