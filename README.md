@@ -58,12 +58,12 @@ flask run
 
 - ### Web Service:
 ```
-localhost:5000/api/departments
-localhost:5000/api/department/<uuid>
+localhost:5000/rest/departments
+localhost:5000/rest/department/<uuid>
 
-localhost:5000/api/employees
-localhost:5000/api/employee/<uuid>
-localhost:5000/api/employees/search/start_date=<YYYY-MM-DD>&end_date=<YYYY-MM-DD>
+localhost:5000/rest/employees
+localhost:5000/rest/employee/<uuid>
+localhost:5000/rest/employees/search/start_date=<YYYY-MM-DD>&end_date=<YYYY-MM-DD>
 ```
 
 - ### Web Application:
